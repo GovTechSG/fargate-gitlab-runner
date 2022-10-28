@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim
 
-RUN apt-get update && apt-get install -y curl unzip openssl gettext-base \
+RUN apt-get update && apt-get install -y curl unzip openssl gettext-base jq \
        && curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash \
        && apt install -y gitlab-runner \
        && rm -rf /var/lib/apt/lists/* \
@@ -13,7 +13,9 @@ COPY config.toml /tmp/
 COPY ecs.toml /tmp/
 COPY entrypoint.sh /
 
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+    && mkdir /home/gitlab-runner/.gitlab-runner \
+    && chown gitlab-runner:gitlab-runner /entrypoint.sh /opt/gitlab-runner /home/gitlab-runner/.gitlab-runner
 
 USER gitlab-runner
 

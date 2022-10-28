@@ -71,7 +71,7 @@ register_runner() {
 
     export RUNNER_NAME=$runner_identification
     export RUNNER_AUTH_TOKEN=$auth_token
-    envsubst < /tmp/config.toml > /etc/gitlab-runner/config.toml
+    envsubst < /tmp/config.toml > ${HOME}/.gitlab-runner/config.toml
 }
 
 ###############################################################################
@@ -87,7 +87,7 @@ register_runner() {
 #   - FARGATE_TASK_DEFINITION
 ###############################################################################
 create_driver_config() {
-    envsubst < /tmp/ecs.toml > /etc/gitlab-runner/ecs.toml
+    envsubst < /tmp/ecs.toml > ${HOME}/.gitlab-runner/ecs.toml
 }
 
 update_ca() {
