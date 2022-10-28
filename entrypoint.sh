@@ -18,6 +18,7 @@ check_variable() {
   [ $(eval "echo \${$1}") ] || (echo Env variable $1 is required && exit 1)
 }
 
+check_variable RUNNER_NAME
 check_variable GITLAB_REGISTRATION_TOKEN
 check_variable GITLAB_URL
 check_variable FARGATE_CLUSTER
@@ -52,7 +53,7 @@ unregister_runner() {
 ###############################################################################
 register_runner() {
 
-    runner_identification="RUNNER_$(date +%s)"
+    runner_identification="${RUNNER_NAME}_$(date +%Y%m%d_%H%M%S)"
 
     # Uses the environment variable "GITLAB_REGISTRATION_TOKEN" to register the runner
 
