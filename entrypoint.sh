@@ -6,12 +6,11 @@
 # - GITLAB_REGISTRATION_TOKEN (required): registration token for your project
 # - GITLAB_URL (optional): the URL to the GitLab instance (defaults to https://gitlab.com)
 # - RUNNER_TAG_LIST (optional): comma separated list of tags for the runner
-# - FARGATE_CLUSTER (required): the AWS Fargate cluster name
-# - FARGATE_REGION (required): the AWS region where the task should be started
-# - FARGATE_SUBNET (required): the AWS subnet where the task should be started
-# - FARGATE_SECURITY_GROUP (required): the AWS security group where the task
-#   should be started
-# - FARGATE_TASK_DEFINITION (required): the task definition used for the task
+# - WORKER_CLUSTER (required): the AWS Fargate cluster name
+# - WORKER_REGION (required): the AWS region where the task should be started
+# - WORKER_SUBNET (required): the AWS subnet where the task should be started
+# - WORKER_SECURITY_GROUP (required): the AWS security group where the task should be started
+# - WORKER_TASK_DEFINITION (required): the task definition used for the task
 # -----------------------------------------------------------------------------
 
 check_variable() {
@@ -21,11 +20,11 @@ check_variable() {
 check_variable RUNNER_NAME
 check_variable GITLAB_REGISTRATION_TOKEN
 check_variable GITLAB_URL
-check_variable FARGATE_CLUSTER
-check_variable FARGATE_REGION
-check_variable FARGATE_SUBNET
-check_variable FARGATE_SECURITY_GROUP
-check_variable FARGATE_TASK_DEFINITION
+check_variable WORKER_CLUSTER
+check_variable WORKER_REGION
+check_variable WORKER_SUBNET
+check_variable WORKER_SECURITY_GROUP
+check_variable WORKER_TASK_DEFINITION
 
 
 ###############################################################################
@@ -53,7 +52,7 @@ unregister_runner() {
 ###############################################################################
 register_runner() {
 
-    runner_identification="${RUNNER_NAME}_$(date +%Y%m%d_%H%M%S)"
+    runner_identification="${RUNNER_NAME_PREFIX}_$(date +%Y%m%d_%H%M%S)"
 
     # Uses the environment variable "GITLAB_REGISTRATION_TOKEN" to register the runner
 
@@ -81,14 +80,14 @@ register_runner() {
 # passed to the container to set the correct values in that file.
 #
 # Globals:
-#   - FARGATE_CLUSTER
-#   - FARGATE_REGION
-#   - FARGATE_SUBNET
-#   - FARGATE_SECURITY_GROUP
-#   - FARGATE_TASK_DEFINITION
+#   - WORKER_CLUSTER
+#   - WORKER_REGION
+#   - WORKER_SUBNET
+#   - WORKER_SECURITY_GROUP
+#   - WORKER_TASK_DEFINITION
 ###############################################################################
 create_driver_config() {
-    envsubst < /tmp/ecs.toml > ${HOME}/.gitlab-runner/ecs.toml
+    envsubst < /tmp/fargate_worker.toml > ${HOME}/.gitlab-runner/fargate_worker.toml
 }
 
 update_ca() {

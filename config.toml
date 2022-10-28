@@ -16,10 +16,10 @@ check_interval = 0
    [runners.cache.gcs] 
  [runners.custom] 
    config_exec = "/opt/gitlab-runner/fargate" 
-   config_args = ["--config", "/home/gitlab-runner/.gitlab-runner/ecs.toml", "custom", "config"]
+   config_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "config"]
    prepare_exec = "/opt/gitlab-runner/fargate" 
-   prepare_args = ["--config", "/home/gitlab-runner/.gitlab-runner/ecs.toml", "custom", "prepare"]
+   prepare_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "prepare"]
    run_exec = "/opt/gitlab-runner/fargate" 
-   run_args = ["--config", "/home/gitlab-runner/.gitlab-runner/ecs.toml", "custom", "run"]
+   run_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "run"]
    cleanup_exec = "/opt/gitlab-runner/fargate" 
-   cleanup_args = ["--config", "/home/gitlab-runner/.gitlab-runner/ecs.toml", "custom", "cleanup"]
+   cleanup_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "cleanup"]
