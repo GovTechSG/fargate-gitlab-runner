@@ -17,7 +17,7 @@ check_variable() {
   [ $(eval "echo \${$1}") ] || (echo Env variable $1 is required && exit 1)
 }
 
-check_variable RUNNER_NAME
+check_variable RUNNER_NAME_PREFIX
 check_variable GITLAB_REGISTRATION_TOKEN
 check_variable GITLAB_URL
 check_variable WORKER_CLUSTER
