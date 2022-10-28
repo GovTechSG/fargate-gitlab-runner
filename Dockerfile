@@ -14,7 +14,7 @@ COPY entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh \
     && mkdir /home/gitlab-runner/.gitlab-runner \
-    && chown gitlab-runner:gitlab-runner /entrypoint.sh /opt/gitlab-runner /home/gitlab-runner/.gitlab-runner
+    && chown -R gitlab-runner:gitlab-runner /entrypoint.sh /opt/gitlab-runner /home/gitlab-runner/.gitlab-runner
 
 USER gitlab-runner
 
