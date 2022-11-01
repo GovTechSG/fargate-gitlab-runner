@@ -117,4 +117,5 @@ register_runner ${GITLAB_REGISTRATION_TOKEN} ${RUNNER_TAG_LIST}
 # launch gitlab-runner passing all arguments
 exec gitlab-runner "$@"
 
-unregister_runner ${auth_token}
+# Comment out as this cannot be reached, requires a different way to unregister
+# unregister_runner ${auth_token}
