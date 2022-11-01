@@ -51,8 +51,10 @@ unregister_runner() {
 #   $2 - List of tags for the Runner, separated by comma
 ###############################################################################
 register_runner() {
+    # Append date and last 7 chars of task credential id to ensure uniqueness
+    runner_identification="${RUNNER_NAME_PREFIX}_$(date +%Y%m%d_%H%M%S)_${AWS_CONTAINER_CREDENTIALS_RELATIVE_URI: -7}"
 
-    runner_identification="${RUNNER_NAME_PREFIX}_$(date +%Y%m%d_%H%M%S)"
+    echo "Registering new runner with name ${runner_identification}"
 
     # Uses the environment variable "GITLAB_REGISTRATION_TOKEN" to register the runner
 
