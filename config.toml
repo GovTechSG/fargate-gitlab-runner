@@ -1,4 +1,4 @@
-concurrent = 1
+concurrent = ${RUNNER_CONCURRENCY}
 check_interval = 0
 
 [session_server]

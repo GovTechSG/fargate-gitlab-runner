@@ -3,8 +3,10 @@
 # Adapted from https://gitlab.com/DanielCMiranda/docker-gitlab-runner-fargate-driver/-/blob/master/docker-entrypoint.sh
 # -----------------------------------------------------------------------------
 # Important: this scripts depends on some predefined environment variables:
+# - RUNNER_CONCURRENCY (optional): Number of jobs that can run concurrently, default to 1
+# - RUNNER_NAME_PREFIX (required): A prefix to be used for runner name
 # - GITLAB_REGISTRATION_TOKEN (required): registration token for your project
-# - GITLAB_URL (optional): the URL to the GitLab instance (defaults to https://gitlab.com)
+# - GITLAB_URL (required): the URL to the GitLab instance
 # - RUNNER_TAG_LIST (optional): comma separated list of tags for the runner
 # - WORKER_CLUSTER (required): the AWS Fargate cluster name
 # - WORKER_REGION (required): the AWS region where the task should be started
@@ -71,6 +73,7 @@ register_runner() {
 
     # Recreate the runner config.toml based on our template
 
+    export RUNNER_CONCURRENCY=${RUNNER_CONCURRENCY:-1} # default to 1
     export RUNNER_NAME=$runner_identification
     export RUNNER_AUTH_TOKEN=$auth_token
     envsubst < /tmp/config.toml > ${HOME}/.gitlab-runner/config.toml
