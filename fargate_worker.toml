@@ -13,5 +13,5 @@ LogFormat = "text"
  Directory = "/opt/gitlab-runner/metadata"
 
 [SSH]
- Username = "root"
+ Username = "${WORKER_SSH_USER}"
  Port = 22

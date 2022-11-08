@@ -13,6 +13,7 @@
 # - WORKER_SUBNET (required): the AWS subnet where the task should be started
 # - WORKER_SECURITY_GROUP (required): the AWS security group where the task should be started
 # - WORKER_TASK_DEFINITION (required): the task definition used for the task
+# - WORKER_SSH_USER (optional): username of the worker
 # -----------------------------------------------------------------------------
 
 check_variable() {
@@ -92,6 +93,7 @@ register_runner() {
 #   - WORKER_TASK_DEFINITION
 ###############################################################################
 create_driver_config() {
+    export WORKER_SSH_USER=${WORKER_SSH_USER:-root}
     envsubst < /tmp/fargate_worker.toml > ${HOME}/.gitlab-runner/fargate_worker.toml
 }
 
