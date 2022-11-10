@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y curl unzip openssl gettext-base jq \
        && curl -Lo /opt/gitlab-runner/fargate https://gitlab-runner-custom-fargate-downloads.s3.amazonaws.com/latest/fargate-linux-amd64 \
        && chmod +x /opt/gitlab-runner/fargate
 
-COPY config.toml fargate_worker.toml /tmp/
+COPY config.toml config_runner.toml fargate_worker.toml /tmp/
 COPY entrypoint.sh /
 
 RUN chmod +x /entrypoint.sh \

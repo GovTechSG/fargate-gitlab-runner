@@ -1,25 +1,9 @@
+# Refer to: How to Manage GitLab Runner Concurrency For Parallel CI Jobs
+# https://www.howtogeek.com/devops/how-to-manage-gitlab-runner-concurrency-for-parallel-ci-jobs/
 concurrent = ${RUNNER_CONCURRENCY}
 check_interval = 0
 
 [session_server]
  session_timeout = 1800
 
-[[runners]]
- name = "${RUNNER_NAME}"
- url = "${GITLAB_URL}/"
- token = "${RUNNER_AUTH_TOKEN}"
- executor = "custom"
- builds_dir = "/opt/gitlab-runner/builds"
- cache_dir = "/opt/gitlab-runner/cache"
- [runners.cache]
-   [runners.cache.s3]
-   [runners.cache.gcs]
- [runners.custom]
-   config_exec = "/opt/gitlab-runner/fargate"
-   config_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "config"]
-   prepare_exec = "/opt/gitlab-runner/fargate"
-   prepare_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "prepare"]
-   run_exec = "/opt/gitlab-runner/fargate"
-   run_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "run"]
-   cleanup_exec = "/opt/gitlab-runner/fargate"
-   cleanup_args = ["--config", "/home/gitlab-runner/.gitlab-runner/fargate_worker.toml", "custom", "cleanup"]
+# Runners (to be added at runtime based on MANAGERS_CONFIGS)
