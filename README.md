@@ -1,6 +1,4 @@
-# fargate-gitlab-runner
-
-Docker image for ECS task for Fargate GitLab runner managers, using [GitLab custom executor driver for AWS Fargate](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate).
+# Docker image for ECS task for Fargate GitLab runner managers, using [GitLab custom executor driver for AWS Fargate](https://gitlab.com/gitlab-org/ci-cd/custom-executor-drivers/fargate).
 
 This repo is part of a set of repos for the complete setup of ECS Service for managers and workers:
 * [fargate-gitlab-runner](../../../fargate-gitlab-runner): Docker image for the ECS task for all runner managers 
