@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  fargate-gitlab-runner:
+    build: .
+    image: ${IMAGE_NAME:-fargate-gitlab-runner-worker}:${IMAGE_TAG:-latest}
+    environment:
+      - GITLAB_URL
+      - GITLAB_REGISTRATION_TOKEN
+      - RUNNER_NAME_PREFIX
+      - RUNNER_CONCURRENCY=5
+      - MANAGERS_CONFIGS
