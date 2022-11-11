@@ -1,0 +1,24 @@
+{
+  "w1": {
+    "manager_name": "w1",
+    "tag_list": "a,b,c",
+    "limit": 10,
+    "worker_ecs_cluster_arn": "ecs_cluster_arn_1",
+    "worker_aws_region": "region-1",
+    "worker_subnet_id": "subnet-123",
+    "worker_security_group_id": "sg-321",
+    "worker_task_definition_arn": "task_definition_arn_1",
+    "worker_ssh_user": "user_1"
+  },
+  "w2": {
+    "manager_name": "w2",
+    "tag_list": "d,e",
+    "limit": 20,
+    "worker_ecs_cluster_arn": "ecs_cluster_arn_2",
+    "worker_aws_region": "region-2",
+    "worker_subnet_id": "subnet-456",
+    "worker_security_group_id": "sg-654",
+    "worker_task_definition_arn": "task_definition_arn_2",
+    "worker_ssh_user": "user_2"
+  }
+}
